@@ -64,6 +64,9 @@
 .nav-icon-container svg {
   width: 20px;
   height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  flex-shrink: 0;
   transition: transform 0.2s ease, stroke 0.2s ease;
 }
 
@@ -107,7 +110,7 @@
   background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  display: none;
+  display: none !important;
   align-items: center;
   justify-content: center;
   padding: 20px;
@@ -116,7 +119,7 @@
 }
 
 .nav-modal-backdrop.active {
-  display: flex;
+  display: flex !important;
 }
 
 .nav-modal-card {

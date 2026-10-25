@@ -57,7 +57,7 @@
       <!-- 1. Beranda -->
       <a href="${berandaUrl}" class="nav-item ${activeItem === 'beranda' ? 'active' : ''}" id="navItemBeranda" title="Halaman Beranda">
         <div class="nav-icon-container">
-          <svg viewBox="0 0 24 24" fill="${activeItem === 'beranda' ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="${activeItem === 'beranda' ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 3L2 12H5V20H9V14H15V20H19V12H22L12 3Z"/>
           </svg>
         </div>
@@ -67,7 +67,7 @@
       <!-- 2. Peta Level -->
       <a href="${petaLevelUrl}" class="nav-item ${activeItem === 'peta_level' ? 'active' : ''}" id="navItemPetaLevel" title="Peta 8 Level Kuis">
         <div class="nav-icon-container">
-          <svg viewBox="0 0 24 24" fill="${activeItem === 'peta_level' ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="${activeItem === 'peta_level' ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
           </svg>
         </div>
@@ -77,10 +77,10 @@
       <!-- 3. Misi -->
       <button type="button" class="nav-item ${activeItem === 'misi' ? 'active' : ''}" id="navItemMisi" title="Misi Demokrasi">
         <div class="nav-icon-container">
-          <svg viewBox="0 0 24 24" fill="${activeItem === 'misi' ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="${activeItem === 'misi' ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
-            <circle cx="12" cy="12" r="6"></circle>
-            <circle cx="12" cy="12" r="2"></circle>
+            <circle cx="12" cy="6" r="6"></circle>
+            <circle cx="12" cy="2" r="2"></circle>
           </svg>
         </div>
         <span class="nav-label">Misi</span>
@@ -89,7 +89,7 @@
       <!-- 4. Peringkat -->
       <button type="button" class="nav-item ${activeItem === 'peringkat' ? 'active' : ''}" id="navItemPeringkat" title="Papan Peringkat">
         <div class="nav-icon-container">
-          <svg viewBox="0 0 24 24" fill="${activeItem === 'peringkat' ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="${activeItem === 'peringkat' ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="12" width="6" height="9" rx="1"></rect>
             <rect x="9" y="6" width="6" height="15" rx="1"></rect>
             <rect x="16" y="9" width="6" height="12" rx="1"></rect>
@@ -101,7 +101,7 @@
       <!-- 5. Profil (Provil) -->
       <button type="button" class="nav-item ${activeItem === 'profil' ? 'active' : ''}" id="navItemProfil" title="Profil Pengguna">
         <div class="nav-icon-container">
-          <svg viewBox="0 0 24 24" fill="${activeItem === 'profil' ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="${activeItem === 'profil' ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
@@ -122,6 +122,7 @@
       modalBackdrop = document.createElement('div');
       modalBackdrop.className = 'nav-modal-backdrop';
       modalBackdrop.id = 'navModalBackdrop';
+      modalBackdrop.style.display = 'none';
       modalBackdrop.innerHTML = `
         <div class="nav-modal-card" id="navModalCard" role="dialog" aria-modal="true">
           <button class="nav-modal-close" id="navModalClose" type="button" aria-label="Tutup">✕</button>
@@ -135,7 +136,10 @@
 
       const closeBtn = modalBackdrop.querySelector('#navModalClose');
       const actionBtn = modalBackdrop.querySelector('#navModalActionBtn');
-      const closeModal = () => modalBackdrop.classList.remove('active');
+      const closeModal = () => {
+        modalBackdrop.classList.remove('active');
+        modalBackdrop.style.display = 'none';
+      };
 
       closeBtn.addEventListener('click', closeModal);
       actionBtn.addEventListener('click', () => {
@@ -155,6 +159,11 @@
     const iconEl = modalBackdrop.querySelector('#navModalIcon');
     const actionBtn = modalBackdrop.querySelector('#navModalActionBtn');
 
+    const openModal = () => {
+      modalBackdrop.style.display = 'flex';
+      modalBackdrop.classList.add('active');
+    };
+
     // Misi Click
     const btnMisi = document.getElementById('navItemMisi');
     if (btnMisi) {
@@ -164,7 +173,7 @@
         descEl.textContent = 'Selesaikan seluruh 8 Level Kuis Pendidikan Pancasila Kelas XI. Kumpulkan 8 Badge Prestasi dan jadilah Juara Demokrasi sejati!';
         actionBtn.textContent = 'Jelajahi Peta Level 🗺️';
         actionBtn.dataset.action = 'goto_map';
-        modalBackdrop.classList.add('active');
+        openModal();
       });
     }
 
@@ -177,7 +186,7 @@
         descEl.textContent = 'Selamat! Nadia Putri (Pelajar Kelas XI) menempati Posisi Teratas dengan skor pembelajaran demokrasi tertinggi se-Indonesia!';
         actionBtn.textContent = 'Tutup & Lanjutkan';
         actionBtn.dataset.action = 'close';
-        modalBackdrop.classList.add('active');
+        openModal();
       });
     }
 
@@ -190,7 +199,7 @@
         descEl.textContent = 'Status: Pelajar Aktif | Jenjang: SMA/SMK Kelas XI | Topik Utama: Demokrasi, HAM, Hukum, & Kemakmuran Indonesia.';
         actionBtn.textContent = 'Tutup';
         actionBtn.dataset.action = 'close';
-        modalBackdrop.classList.add('active');
+        openModal();
       });
     }
   }

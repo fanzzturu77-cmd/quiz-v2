@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Democracy Quest - Beranda Kuis PKN</title>
+  <meta name="description" content="Democracy Quest - Kuis Pendidikan Pancasila & Demokrasi Kelas XI">
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans & Fredoka -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="viewport-wrapper">
+    <!-- Desktop Preview Controls -->
+    <div class="preview-toolbar" id="previewToolbar">
+      <div class="toolbar-brand">
+        <span class="toolbar-dot"></span>
+        <span class="toolbar-title">Democracy Quest Beranda (Halaman Dalam)</span>
+      </div>
+      <div class="toolbar-actions">
+        <a href="../index.html" class="toolbar-btn" title="Kembali ke Halaman Pertama Onboarding">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Halaman Pertama</span>
+        </a>
+        <button class="toolbar-btn" id="toggleFrameBtn" title="Toggle Frame Mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          <span id="frameModeText">Mode Frame</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN APP SCREEN (BERANDA - HALAMAN DALAM) -->
+    <main class="app-screen home-screen" id="appScreen">
+      <!-- Background Sky Sunburst Rays -->
+      <div class="home-bg-rays" aria-hidden="true">
+        <div class="sunburst-ray ray-1"></div>
+        <div class="sunburst-ray ray-2"></div>
+        <div class="sunburst-ray ray-3"></div>
+        <div class="sunburst-ray ray-4"></div>
+      </div>
+
+      <!-- Scrollable Content Area -->
+      <div class="home-scroll-content" id="homeScrollContent">
+
+        <!-- 1. PROFIL PENGGUNA (USER HEADER) -->
+        <header class="home-user-header">
+          <div class="user-profile-left">
+            <div class="user-avatar-wrapper">
+              <img src="../assets/avatar_nadia.png" alt="Avatar Nadia Putri" class="user-avatar-img">
+            </div>
+            <div class="user-info">
+              <h1 class="user-name">Nadia Putri</h1>
+              <span class="user-role-badge">Pelajar</span>
+            </div>
+          </div>
+
+          <!-- Gem / Coin Badge Pill -->
+          <div class="user-gem-badge" id="gemBadge" role="button" tabindex="0" title="Koin Demokrasi">
+            <div class="gem-icon-circle">
+              <svg viewBox="0 0 24 24" class="gem-svg" fill="none">
+                <path d="M6 3H18L22 9L12 22L2 9L6 3Z" fill="#FACC15" stroke="#CA8A04" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M12 22L7 9L6 3" stroke="#FDE047" stroke-width="1.2"/>
+                <path d="M12 22L17 9L18 3" stroke="#EAB308" stroke-width="1.2"/>
+                <path d="M2 9H22" stroke="#FEF08A" stroke-width="1.2"/>
+              </svg>
+            </div>
+            <span class="gem-count" id="gemCount">30</span>
+          </div>
+        </header>
+
+        <!-- 2. BANNER UTAMA ("Juara Demokrasi") -->
+        <section class="banner-utama" id="bannerUtama">
+          <!-- Subtle sunburst stripes inside banner -->
+          <div class="banner-pattern" aria-hidden="true"></div>
+
+          <div class="banner-text-content">
+            <h2 class="banner-title">
+              <span class="banner-title-line">Juara</span>
+              <span class="banner-title-line highlight-word">Demokrasi</span>
+            </h2>
+            <p class="banner-subtitle">Asah wawasan, pahami hak, wujudkan keadilan.</p>
+          </div>
+
+          <div class="banner-graphic-wrap">
+            <img src="../assets/trophy_banner.png" alt="Piala Juara Demokrasi 3D Emas" class="banner-trophy-img" draggable="false">
+          </div>
+        </section>
+
+        <!-- 3. KARTU PROMOSI ("Misi Demokrasi") -->
+        <section class="promo-card" id="promoCard">
+          <div class="promo-left-graphic">
+            <img src="../assets/crown_promo.png" alt="Mahkota Misi Demokrasi 3D" class="promo-crown-img" draggable="false">
+          </div>
+          <div class="promo-info">
+            <h3 class="promo-title">Misi Demokrasi</h3>
+            <p class="promo-desc">Selesaikan level dan raih badge prestasi!</p>
+          </div>
+          <button class="promo-action-btn" id="promoActionBtn" type="button" aria-label="Buka Misi Demokrasi">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </button>
+        </section>
+
+        <!-- 4. JUDUL BAGIAN GAME ("Game Populer" & "Lihat Semua") -->
+        <div class="section-game-header">
+          <h3 class="section-title">Game Populer</h3>
+          <button class="btn-see-all" id="seeAllBtn" type="button">Lihat Semua</button>
+        </div>
+
+        <!-- 5. KARTU GAME UTAMA ("Democracy Quest") -->
+        <section class="main-game-card" id="mainGameCard">
+          <!-- Top Row: Badge PANCASILA & Favorite Heart Button -->
+          <div class="game-card-top-row">
+            <span class="badge-pancasila">PANCASILA</span>
+            <button class="btn-favorite" id="btnFavorite" type="button" aria-label="Favoritkan game">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#F97316" class="heart-svg">
+                <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Card Content -->
+          <div class="game-card-content">
+            <h4 class="game-card-title">
+              Democracy <span class="highlight-pink">Quest</span>
+            </h4>
+            <p class="game-card-desc">
+              Jelajahi dunia demokrasi melalui kuis seru tentang HAM, hukum, otonomi daerah, kemakmuran, dan keadilan sosial. Selesaikan setiap tantangan, kumpulkan badge, dan jadilah juara demokrasi!
+            </p>
+          </div>
+
+          <!-- Bottom Action Button: Black Circle with Arrow -->
+          <button class="game-card-play-btn" id="gameCardPlayBtn" type="button" aria-label="Mulai Main Democracy Quest">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </button>
+
+          <!-- 3D Futuristic Hero Character -->
+          <div class="game-card-character-wrap">
+            <img src="../assets/hero_democracy.png" alt="Karakter 3D Democracy Quest dengan Kacamata Pintar" class="game-hero-img" draggable="false">
+          </div>
+        </section>
+
+      </div>
+
+      <!-- 6. NAVIGASI BAWAH (BOTTOM NAVBAR) -->
+      <nav class="bottom-nav-bar" aria-label="Navigasi Utama">
+        <!-- 1. Beranda (Active) -->
+        <button class="nav-item active" id="navHome" type="button">
+          <div class="nav-icon-container">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3L2 12H5V20H9V14H15V20H19V12H22L12 3Z"/>
+            </svg>
+          </div>
+          <span class="nav-label">Beranda</span>
+        </button>
+
+        <!-- 2. Kuis -->
+        <button class="nav-item" id="navQuiz" type="button">
+          <div class="nav-icon-container">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <span class="nav-label">Kuis</span>
+        </button>
+
+        <!-- 3. Main -->
+        <button class="nav-item" id="navPlay" type="button">
+          <div class="nav-icon-container">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </div>
+          <span class="nav-label">Main</span>
+        </button>
+
+        <!-- 4. Peringkat -->
+        <button class="nav-item" id="navLeaderboard" type="button">
+          <div class="nav-icon-container">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="12" width="6" height="9" rx="1"></rect>
+              <rect x="9" y="6" width="6" height="15" rx="1"></rect>
+              <rect x="16" y="9" width="6" height="12" rx="1"></rect>
+            </svg>
+          </div>
+          <span class="nav-label">Peringkat</span>
+        </button>
+
+        <!-- 5. Profil -->
+        <button class="nav-item" id="navProfile" type="button">
+          <div class="nav-icon-container">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <span class="nav-label">Profil</span>
+        </button>
+      </nav>
+
+      <!-- Toast Feedback -->
+      <div class="toast-notification" id="toastNotification" role="alert" aria-live="polite">
+        <span class="toast-icon">🚀</span>
+        <span class="toast-msg" id="toastMsg">Memulai Kuis...</span>
+      </div>
+
+      <!-- Confetti Particles Container -->
+      <div class="confetti-container" id="confettiContainer" aria-hidden="true"></div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

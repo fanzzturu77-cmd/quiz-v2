@@ -1,0 +1,806 @@
+/* ==========================================================================
+   DEMOCRACY QUEST - BERANDA KUIS PKN
+   Design Theme: Clean, Modern Educational Mobile UI matching Reference Design
+   ========================================================================== */
+
+:root {
+  --color-primary-dark: #0f172a;
+  --color-slate: #334155;
+  --color-muted: #64748b;
+  --color-sky-blue: #60a5fa;
+  --color-sky-dark: #2563eb;
+  --color-banner-blue: #93c5fd;
+  --color-card-pink: #f472b6;
+  --color-badge-gold: #facc15;
+
+  /* Typography */
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-friendly: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+
+  /* Dimensions */
+  --app-max-width: 420px;
+  --app-height: 840px;
+  --transition-smooth: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+  font-family: var(--font-body);
+  background: #0b1120;
+  color: var(--color-primary-dark);
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Viewport Wrapper */
+.viewport-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  padding: clamp(8px, 1.8vh, 18px) 12px;
+  position: relative;
+}
+
+/* Preview Toolbar */
+.preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--app-max-width);
+  margin-bottom: 8px;
+  padding: 6px 14px;
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #e2e8f0;
+  font-size: 12.5px;
+  flex-shrink: 0;
+}
+
+.toolbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.toolbar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.toolbar-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f1f5f9;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.toolbar-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* ==========================================================================
+   MAIN APP SCREEN (BERANDA)
+   ========================================================================== */
+.app-screen.home-screen {
+  position: relative;
+  width: 100%;
+  max-width: var(--app-max-width);
+  height: clamp(580px, 94vh, var(--app-height));
+  height: clamp(580px, 94dvh, var(--app-height));
+  /* Soft Sky Blue Background with Sunburst Glow */
+  background: radial-gradient(circle at 50% -10%, #d8ecff 0%, #edf6ff 50%, #f6faff 100%);
+  border-radius: clamp(28px, 5vw, 44px);
+  box-shadow: 
+    0 25px 60px -12px rgba(0, 0, 0, 0.55),
+    0 0 0 8px rgba(255, 255, 255, 0.12),
+    0 0 0 1.5px rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  transition: all 0.35s ease;
+}
+
+.app-screen.fullscreen-mode {
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Sunburst Rays Background */
+.home-bg-rays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 380px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.sunburst-ray {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(186, 230, 253, 0.4) 0%, rgba(240, 249, 255, 0) 70%);
+  pointer-events: none;
+}
+
+.ray-1 { transform: translateX(-50%) rotate(0deg); }
+.ray-2 { transform: translateX(-50%) rotate(35deg); opacity: 0.6; }
+.ray-3 { transform: translateX(-50%) rotate(-35deg); opacity: 0.6; }
+.ray-4 { transform: translateX(-50%) rotate(70deg); opacity: 0.4; }
+
+/* Scrollable Content Area */
+.home-scroll-content {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: clamp(16px, 2.5vh, 24px) 18px 90px 18px; /* 90px bottom padding for navbar */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar */
+.home-scroll-content::-webkit-scrollbar {
+  display: none;
+}
+.home-scroll-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================================================
+   1. USER PROFILE HEADER
+   ========================================================================== */
+.home-user-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.user-profile-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #e0f2fe;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(18, 54, 102, 0.12);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.user-name {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+}
+
+.user-role-badge {
+  display: inline-block;
+  align-self: flex-start;
+  border: 1px solid #94a3b8;
+  border-radius: 999px;
+  padding: 1.5px 10px;
+  font-size: 11.5px;
+  color: #475569;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Coin / Gem Badge Pill */
+.user-gem-badge {
+  background: #dbeafe;
+  border-radius: 999px;
+  padding: 4px 14px 4px 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.user-gem-badge:hover {
+  transform: scale(1.05);
+}
+
+.gem-icon-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #eab308;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(234, 179, 8, 0.4);
+}
+
+.gem-svg {
+  width: 16px;
+  height: 16px;
+}
+
+.gem-count {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   2. BANNER UTAMA ("Juara Demokrasi")
+   ========================================================================== */
+.banner-utama {
+  position: relative;
+  width: 100%;
+  height: 172px;
+  background: linear-gradient(135deg, #93c5fd 0%, #bfdbfe 50%, #93c5fd 100%);
+  border-radius: 26px;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 24px -4px rgba(59, 130, 246, 0.25);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.banner-utama:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -4px rgba(59, 130, 246, 0.35);
+}
+
+/* Subtle Sunburst Stripes in Banner */
+.banner-pattern {
+  position: absolute;
+  inset: 0;
+  background: repeating-conic-gradient(
+    from 0deg at 75% 50%,
+    rgba(255, 255, 255, 0.15) 0deg 15deg,
+    rgba(255, 255, 255, 0) 15deg 30deg
+  );
+  pointer-events: none;
+}
+
+.banner-text-content {
+  position: relative;
+  z-index: 2;
+  max-width: 62%;
+}
+
+.banner-title {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.banner-title-line {
+  display: block;
+}
+
+.highlight-word {
+  color: #0f172a;
+  text-shadow: 0 2px 0 #fef08a, 0 4px 10px rgba(254, 240, 138, 0.6);
+}
+
+.banner-subtitle {
+  font-size: 12px;
+  color: #1e293b;
+  line-height: 1.35;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.banner-graphic-wrap {
+  position: absolute;
+  right: -8px;
+  bottom: -10px;
+  width: 145px;
+  height: 160px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.banner-trophy-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(30, 58, 138, 0.28));
+  transition: transform 0.3s ease;
+}
+
+.banner-utama:hover .banner-trophy-img {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* ==========================================================================
+   3. KARTU PROMOSI ("Misi Demokrasi")
+   ========================================================================== */
+.promo-card {
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(90deg, #dbeafe 0%, #e0f2fe 100%);
+  border-radius: 24px;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 6px 16px rgba(56, 189, 248, 0.15);
+  display: flex;
+  align-items: center;
+  padding: 8px 14px 8px 12px;
+  margin-bottom: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.promo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.22);
+}
+
+.promo-left-graphic {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.promo-crown-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(202, 138, 4, 0.25));
+}
+
+.promo-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.promo-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.promo-desc {
+  font-size: 11.5px;
+  color: #475569;
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+.promo-action-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.promo-card:hover .promo-action-btn {
+  background: #0f172a;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   4. JUDUL BAGIAN GAME ("Game Populer" & "Lihat Semua")
+   ========================================================================== */
+.section-game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 0 2px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.btn-see-all {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #64748b;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.btn-see-all:hover {
+  color: #2563eb;
+}
+
+/* ==========================================================================
+   5. KARTU GAME UTAMA ("Democracy Quest")
+   ========================================================================== */
+.main-game-card {
+  position: relative;
+  width: 100%;
+  min-height: 330px;
+  background: linear-gradient(160deg, #fbcfe8 0%, #f472b6 40%, #e879f9 100%);
+  border-radius: 30px;
+  padding: 20px 20px 24px 20px;
+  box-shadow: 0 18px 36px -8px rgba(236, 72, 153, 0.35);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.main-game-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 42px -6px rgba(236, 72, 153, 0.45);
+}
+
+/* Top Row: Badge PANCASILA & Favorite Heart */
+.game-card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  z-index: 4;
+}
+
+.badge-pancasila {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 13px;
+  color: #1e1b4b;
+  letter-spacing: 0.5px;
+}
+
+.btn-favorite {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-favorite:hover {
+  transform: scale(1.1);
+  background: #ffffff;
+}
+
+.btn-favorite.active .heart-svg {
+  fill: #ef4444;
+}
+
+/* Card Text Content */
+.game-card-content {
+  position: relative;
+  z-index: 3;
+  margin-top: 14px;
+  max-width: 58%;
+}
+
+.game-card-title {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+}
+
+.highlight-pink {
+  color: #0f172a;
+  text-shadow: 0 2px 0 #fef08a, 0 4px 10px rgba(254, 240, 138, 0.6);
+}
+
+.game-card-desc {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #1e293b;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* Bottom Action Play Button */
+.game-card-play-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #0b0f19;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 8px 18px rgba(11, 15, 25, 0.4);
+  position: relative;
+  z-index: 4;
+  margin-top: 18px;
+  transition: var(--transition-smooth);
+}
+
+.main-game-card:hover .game-card-play-btn {
+  transform: scale(1.08);
+  background: #1e293b;
+}
+
+/* 3D Hero Character Wrap */
+.game-card-character-wrap {
+  position: absolute;
+  right: -8px;
+  bottom: 0;
+  width: 215px;
+  height: 250px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.game-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 24px rgba(219, 39, 119, 0.35));
+  transition: transform 0.3s ease;
+}
+
+.main-game-card:hover .game-hero-img {
+  transform: scale(1.04);
+}
+
+/* ==========================================================================
+   6. NAVIGASI BAWAH (BOTTOM NAVBAR)
+   ========================================================================== */
+.bottom-nav-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 74px;
+  background: #ffffff;
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 12px;
+  z-index: 30;
+}
+
+.nav-item {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.nav-item:hover {
+  color: #2563eb;
+}
+
+.nav-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-label {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Active State (Beranda) */
+.nav-item.active {
+  background: #60a5fa;
+  color: #ffffff;
+  border-radius: 18px;
+  padding: 8px 18px;
+  box-shadow: 0 6px 14px rgba(96, 165, 250, 0.4);
+}
+
+.nav-item.active .nav-label {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   TOAST & CONFETTI
+   ========================================================================== */
+.toast-notification {
+  position: absolute;
+  top: 65px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  white-space: nowrap;
+}
+
+.toast-notification.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  overflow: hidden;
+}
+
+.confetti-particle {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  animation: confetti-fall 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translateY(800px) rotate(720deg) scale(0.6); opacity: 0; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  body {
+    background: #edf6ff;
+  }
+  .viewport-wrapper {
+    padding: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  .preview-toolbar {
+    display: none;
+  }
+  .app-screen.home-screen {
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

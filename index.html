@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Quizz K5 - Welcome</title>
+  <meta name="description" content="Welcome to Quizz K5 - Fun and Interactive Learning Quiz">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="viewport-wrapper">
+    <!-- Desktop Preview Controls -->
+    <div class="preview-toolbar" id="previewToolbar">
+      <div class="toolbar-brand">
+        <span class="toolbar-dot"></span>
+        <span class="toolbar-title">Quizz K5 Onboarding</span>
+      </div>
+      <div class="toolbar-actions">
+        <a href="beranda/index.html" class="toolbar-btn" title="Buka Halaman Dalam Beranda">
+          <span>Halaman Dalam (Beranda)</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        <button class="toolbar-btn" id="toggleFrameBtn" title="Toggle Mobile Mockup Frame">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          <span id="frameModeText">Mode Frame</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Mobile App Screen (Onboarding) -->
+    <main class="app-screen" id="appScreen">
+      <!-- Background Graphic Accents (Vibrant Sky with Crisp Fluffy Clouds) -->
+      <div class="bg-elements" aria-hidden="true">
+        <!-- Concentric Radial Wave Rings -->
+        <div class="wave-ring wave-1"></div>
+        <div class="wave-ring wave-2"></div>
+        <div class="wave-ring wave-3"></div>
+
+        <!-- Defined, Visible Fluffy Clouds (High Contrast & Soft Shadows) -->
+        <svg class="abstract-cloud cloud-top-left" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25 85C12 85 0 74 0 62C0 50 10 40 22 40C26 20 46 5 72 5C98 5 118 20 122 40C134 40 144 50 144 62C144 74 134 85 122 85H25Z" fill="#FFFFFF" fill-opacity="0.95"/>
+          <path d="M25 85C12 85 0 74 0 62C0 50 10 40 22 40C26 20 46 5 72 5C98 5 118 20 122 40C134 40 144 50 144 62C144 74 134 85 122 85H25Z" stroke="#E0F2FE" stroke-width="2"/>
+        </svg>
+
+        <svg class="abstract-cloud cloud-upper-right" viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 105C22 105 8 92 8 76C8 60 22 48 38 48C44 24 70 8 102 8C134 8 160 26 164 52C178 52 192 64 192 80C192 96 178 105 162 105H40Z" fill="#FFFFFF" fill-opacity="0.92"/>
+          <path d="M40 105C22 105 8 92 8 76C8 60 22 48 38 48C44 24 70 8 102 8C134 8 160 26 164 52C178 52 192 64 192 80C192 96 178 105 162 105H40Z" stroke="#E0F2FE" stroke-width="2"/>
+        </svg>
+
+        <svg class="abstract-cloud cloud-mid-left" viewBox="0 0 220 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 90C14 90 2 78 2 64C2 50 14 40 28 40C34 18 56 4 82 4C110 4 132 20 136 42C150 42 162 54 162 68C162 82 150 90 136 90H30Z" fill="#FFFFFF" fill-opacity="0.88"/>
+          <path d="M30 90C14 90 2 78 2 64C2 50 14 40 28 40C34 18 56 4 82 4C110 4 132 20 136 42C150 42 162 54 162 68C162 82 150 90 136 90H30Z" stroke="#E0F2FE" stroke-width="2"/>
+        </svg>
+
+        <svg class="abstract-cloud cloud-lower-right" viewBox="0 0 260 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 115C30 115 14 100 14 84C14 68 28 56 46 56C54 30 84 12 120 12C158 12 188 32 194 62C212 62 230 76 230 94C230 112 212 115 194 115H50Z" fill="#FFFFFF" fill-opacity="0.9"/>
+          <path d="M50 115C30 115 14 100 14 84C14 68 28 56 46 56C54 30 84 12 120 12C158 12 188 32 194 62C212 62 230 76 230 94C230 112 212 115 194 115H50Z" stroke="#E0F2FE" stroke-width="2"/>
+        </svg>
+
+        <!-- Bottom Horizon Rolling Clouds -->
+        <svg class="abstract-cloud-bottom" viewBox="0 0 420 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 65C40 40 85 35 130 50C175 65 220 45 265 38C310 30 355 45 390 40C405 38 415 45 420 50V120H0V65Z" fill="#FFFFFF" fill-opacity="0.85"/>
+          <path d="M0 75C30 55 70 50 110 62C160 76 210 60 255 52C310 42 360 55 420 60V120H0V75Z" fill="#F0F9FF" fill-opacity="0.95"/>
+        </svg>
+
+        <!-- Flying Paper Airplane Doodle -->
+        <svg class="airplane-doodle" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 80 C40 85, 60 50, 100 40 C120 35, 135 25, 140 18" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/>
+          <polygon points="145,15 125,24 135,12" fill="#FFFFFF" filter="drop-shadow(0 2px 4px rgba(18,54,102,0.15))"/>
+        </svg>
+
+        <!-- Cartoon Outline "ABC" Letters in background right -->
+        <svg class="abc-doodle" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M45 130 C45 90, 80 50, 115 50 C150 50, 175 80, 175 125 C175 140, 180 155, 190 165" stroke="rgba(255,255,255,0.5)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 1"/>
+          <path d="M140 100 C155 75, 215 70, 220 105 C225 130, 170 140, 150 140 C190 145, 235 155, 225 195 C215 230, 155 220, 130 205" stroke="rgba(255,255,255,0.6)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M220 220 C180 250, 120 245, 95 210 C70 175, 80 120, 120 90 C150 70, 190 75, 205 95" stroke="rgba(255,255,255,0.45)" stroke-width="8" stroke-linecap="round"/>
+        </svg>
+
+        <!-- Educational Doodles Floating in Sky -->
+        <div class="sky-doodle doodle-star1">⭐</div>
+        <div class="sky-doodle doodle-star2">✨</div>
+        <div class="sky-doodle doodle-bulb">💡</div>
+        <div class="sky-doodle doodle-math">1 2 3</div>
+        <div class="sky-doodle doodle-plus">+</div>
+
+        <!-- Delicate Sparkles -->
+        <div class="sparkle sparkle-1">✦</div>
+        <div class="sparkle sparkle-2">✧</div>
+        <div class="sparkle sparkle-3">✦</div>
+        <div class="sparkle sparkle-4">★</div>
+      </div>
+
+      <!-- Top Navigation Bar -->
+      <header class="top-nav">
+        <!-- Progress Indicators (Red navigation dashes) -->
+        <nav class="progress-dashes" aria-label="Navigasi Halaman Quiz">
+          <button class="dash-btn active" id="navDash0" aria-label="Slide 1" data-slide="0">
+            <span class="dash-indicator"></span>
+          </button>
+          <button class="dash-btn" id="navDash1" aria-label="Slide 2" data-slide="1">
+            <span class="dash-indicator"></span>
+          </button>
+          <button class="dash-btn" id="navDash2" aria-label="Slide 3" data-slide="2">
+            <span class="dash-indicator"></span>
+          </button>
+        </nav>
+
+        <!-- Skip Button (Jumps directly to Beranda) -->
+        <button class="skip-btn" id="skipBtn" type="button" aria-label="Skip onboarding to Home">
+          Skip
+        </button>
+      </header>
+
+      <!-- NEATLY ARRANGED FLOATING LEARNING ELEMENTS (Enlarged & Animated, No Overlap) -->
+      <!-- 1. Mid-Left: 3D Earth Globe + "Umum" Badge -->
+      <div class="ambient-badge-wrap ambient-left" id="wrapGlobe">
+        <div class="floating-item item-globe" id="floatingGlobe" title="Planet Bumi Pengetahuan">
+          <img src="assets/element_globe.png" alt="Planet Bumi 3D" class="float-img" draggable="false">
+        </div>
+        <div class="chip-left" id="chipLeft">
+          <span class="chip-icon">🌍</span>
+          <span class="chip-text">Umum</span>
+        </div>
+      </div>
+
+      <!-- 2. Mid-Right: 3D Diploma & Gold Star Certificate -->
+      <div class="ambient-badge-wrap ambient-right" id="wrapDiploma">
+        <div class="floating-item item-diploma" id="floatingDiploma" title="Ijazah & Bintang Juara">
+          <img src="assets/element_diploma.png" alt="Sertifikat 3D" class="float-img" draggable="false">
+        </div>
+      </div>
+
+      <!-- 3. Lower-Left: 3D Magic Open Book (Elevated & Enlarged) -->
+      <div class="ambient-badge-wrap ambient-bottom-left" id="wrapBook">
+        <div class="floating-item item-book" id="floatingBook" title="Buku Pelajaran Ajaib">
+          <img src="assets/element_book.png" alt="Buku Ajaib 3D" class="float-img" draggable="false">
+        </div>
+      </div>
+
+      <!-- 4. Lower-Right: Creative Brain Challenge Badge (Elevated & Enlarged) -->
+      <div class="ambient-badge-wrap ambient-bottom-right" id="wrapBrain">
+        <div class="chip-right" id="chipRight">
+          <span class="chip-icon">🧠</span>
+          <span class="chip-text">Asah Otak Seru</span>
+        </div>
+      </div>
+
+      <!-- Carousel Container (Slides) -->
+      <div class="carousel-container" id="carouselContainer">
+        <div class="carousel-track" id="carouselTrack">
+
+          <!-- SLIDE 1 (MATCHES REFERENCE IMAGE EXACTLY - BALANCED & SPACIOUS) -->
+          <div class="carousel-slide slide-active" data-index="0">
+            <!-- Tilted Board with 4 Corner Pins -->
+            <div class="welcome-section">
+              <div class="card-wrapper">
+                <div class="burst-sparkles" aria-hidden="true">
+                  <span class="ray ray-1"></span>
+                  <span class="ray ray-2"></span>
+                  <span class="ray ray-3"></span>
+                </div>
+                <div class="welcome-card">
+                  <div class="corner-pin pin-tl"></div>
+                  <div class="corner-pin pin-tr"></div>
+                  <div class="corner-pin pin-bl"></div>
+                  <div class="corner-pin pin-br"></div>
+                  <div class="card-inner-content">
+                    <h1 class="welcome-title">
+                      <span class="title-line title-welcome">Welcome</span>
+                      <span class="title-line title-to">to</span>
+                      <span class="title-line title-highlight-wrap">
+                        <span class="title-highlight">Quizz K5</span>
+                      </span>
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Character: Boy on Flying Pencil (Static, No Bobbing Animation) -->
+            <div class="hero-character-section">
+              <div class="character-container">
+                <div class="character-inner character-static">
+                  <img 
+                    src="assets/character.png" 
+                    alt="Siswa ceria mengendarai pensil kuning terbang"
+                    class="hero-img hero-boy"
+                    id="heroCharacter"
+                    draggable="false"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 2: Raih Bintang & Skor Juara -->
+          <div class="carousel-slide" data-index="1">
+            <div class="welcome-section">
+              <div class="card-wrapper">
+                <div class="burst-sparkles" aria-hidden="true">
+                  <span class="ray ray-1"></span>
+                  <span class="ray ray-2"></span>
+                  <span class="ray ray-3"></span>
+                </div>
+                <div class="welcome-card card-slide2">
+                  <div class="corner-pin pin-tl"></div>
+                  <div class="corner-pin pin-tr"></div>
+                  <div class="corner-pin pin-bl"></div>
+                  <div class="corner-pin pin-br"></div>
+                  <div class="card-inner-content">
+                    <h2 class="welcome-title">
+                      <span class="title-line title-welcome">Raih Bintang</span>
+                      <span class="title-line title-to">&amp; Skor</span>
+                      <span class="title-line title-highlight-wrap">
+                        <span class="title-highlight">Terbaikmu</span>
+                      </span>
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Character: Girl with Golden Star Trophy (Static) -->
+            <div class="hero-character-section">
+              <div class="character-container">
+                <div class="character-inner character-static">
+                  <img 
+                    src="assets/character2.png" 
+                    alt="Siswi berprestasi memegang piala bintang emas dan kartu kuis"
+                    class="hero-img hero-trophy"
+                    draggable="false"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 3: Siap Untuk Memulai Tantangan -->
+          <div class="carousel-slide" data-index="2">
+            <div class="welcome-section">
+              <div class="card-wrapper">
+                <div class="burst-sparkles" aria-hidden="true">
+                  <span class="ray ray-1"></span>
+                  <span class="ray ray-2"></span>
+                  <span class="ray ray-3"></span>
+                </div>
+                <div class="welcome-card card-slide3">
+                  <div class="corner-pin pin-tl"></div>
+                  <div class="corner-pin pin-tr"></div>
+                  <div class="corner-pin pin-bl"></div>
+                  <div class="corner-pin pin-br"></div>
+                  <div class="card-inner-content">
+                    <h2 class="welcome-title">
+                      <span class="title-line title-welcome">Siap Untuk</span>
+                      <span class="title-line title-to">Memulai</span>
+                      <span class="title-line title-highlight-wrap">
+                        <span class="title-highlight">Tantangan?</span>
+                      </span>
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Character: Student Ready with Checklist (Static) -->
+            <div class="hero-character-section">
+              <div class="character-container">
+                <div class="character-inner character-static">
+                  <img 
+                    src="assets/character3.png" 
+                    alt="Siswa siap kuis dengan checklist kelulusan"
+                    class="hero-img hero-ready"
+                    draggable="false"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom Action Bar / Draggable Slider (Slide to Start -> Navigates to home.html) -->
+      <footer class="bottom-action-bar">
+        <!-- Left Circular Back Button -->
+        <button class="circle-btn-back disabled" id="backBtn" type="button" aria-label="Halaman sebelumnya">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Right Draggable Slider Pill Button (Slide to Start / Geser) -->
+        <div class="slider-pill-container" id="sliderPillContainer">
+          <!-- Active Color Progress Fill (Follows Thumb Drag) -->
+          <div class="slider-fill-track" id="sliderFillTrack"></div>
+
+          <!-- Draggable Thumb Knob (Pink rimmed circle with open book icon) -->
+          <div class="slider-thumb-handle" id="sliderThumb" role="slider" aria-label="Geser untuk Memulai" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+            <div class="book-badge">
+              <div class="book-icon-wrapper">
+                <svg viewBox="0 0 36 36" fill="none" class="book-svg">
+                  <!-- Book Pages / Spine -->
+                  <path d="M18 10C14.5 7.5 9 7.8 5 10V25C9 23 14.5 22.8 18 25V10Z" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
+                  <path d="M18 10C21.5 7.5 27 7.8 31 10V25C27 23 21.5 22.8 18 25V10Z" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"/>
+                  <!-- Page edge lines -->
+                  <path d="M7 13C10.5 11.2 15 11.2 17 12.5" stroke="#CBD5E1" stroke-width="1" stroke-linecap="round"/>
+                  <path d="M7 16.5C10.5 14.7 15 14.7 17 16" stroke="#CBD5E1" stroke-width="1" stroke-linecap="round"/>
+                  <path d="M19 12.5C21 11.2 25.5 11.2 29 13" stroke="#CBD5E1" stroke-width="1" stroke-linecap="round"/>
+                  <path d="M19 16C21 14.7 25.5 14.7 29 16.5" stroke="#CBD5E1" stroke-width="1" stroke-linecap="round"/>
+                  <!-- Book Cover Border / Outline in Pink/Red -->
+                  <path d="M4 25.5C8 23.5 14 23.2 18 25.8C22 23.2 28 23.5 32 25.5" stroke="#F43F5E" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M18 10V26" stroke="#E11D48" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <!-- Swipe drag hint ripples -->
+            <div class="thumb-pulse-ring"></div>
+          </div>
+
+          <!-- Center Slider Text Label -->
+          <div class="slider-text-label" id="sliderTextLabel">
+            <span class="main-label">Get Start</span>
+            <span class="sub-label">Geser untuk Masuk</span>
+          </div>
+
+          <!-- Triple Chevron Chevrons (Right End) -->
+          <div class="triple-arrow" id="sliderArrows" aria-hidden="true">
+            <span class="arr arr-1">›</span>
+            <span class="arr arr-2">›</span>
+            <span class="arr arr-3">›</span>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Interactive Modal / Feedback Toast -->
+      <div class="toast-notification" id="toastNotification" role="alert" aria-live="polite">
+        <span class="toast-icon">🚀</span>
+        <span class="toast-msg" id="toastMsg">Menyiapkan Kuis K5...</span>
+      </div>
+
+      <!-- Confetti Particles Container -->
+      <div class="confetti-container" id="confettiContainer" aria-hidden="true"></div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

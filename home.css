@@ -521,10 +521,10 @@ html, body {
 .main-game-card {
   position: relative;
   width: 100%;
-  min-height: 330px;
+  min-height: 320px;
   background: linear-gradient(160deg, #fbcfe8 0%, #f472b6 40%, #e879f9 100%);
   border-radius: 30px;
-  padding: 20px 20px 24px 20px;
+  padding: 18px 18px 20px 18px;
   box-shadow: 0 18px 36px -8px rgba(236, 72, 153, 0.35);
   overflow: hidden;
   display: flex;
@@ -553,18 +553,18 @@ html, body {
   background: rgba(255, 255, 255, 0.45);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  padding: 6px 18px;
+  padding: 6px 16px;
   border-radius: 999px;
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 13px;
+  font-size: 12.5px;
   color: #1e1b4b;
   letter-spacing: 0.5px;
 }
 
 .btn-favorite {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
@@ -587,17 +587,17 @@ html, body {
   fill: #ef4444;
 }
 
-/* Card Text Content */
+/* Card Text Content (Constrained to left side so it never collides with character) */
 .game-card-content {
   position: relative;
   z-index: 3;
-  margin-top: 14px;
-  max-width: 58%;
+  margin-top: 10px;
+  max-width: 48%;
 }
 
 .game-card-title {
   font-family: var(--font-heading);
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 900;
   color: #0f172a;
   line-height: 1.15;
@@ -610,17 +610,18 @@ html, body {
 }
 
 .game-card-desc {
-  font-size: 11.5px;
-  line-height: 1.45;
+  font-size: 10.8px;
+  line-height: 1.4;
   color: #1e293b;
   font-weight: 500;
-  margin-top: 8px;
+  margin-top: 7px;
+  letter-spacing: -0.15px;
 }
 
 /* Bottom Action Play Button */
 .game-card-play-btn {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #0b0f19;
   display: flex;
@@ -631,7 +632,7 @@ html, body {
   box-shadow: 0 8px 18px rgba(11, 15, 25, 0.4);
   position: relative;
   z-index: 4;
-  margin-top: 18px;
+  margin-top: 14px;
   transition: var(--transition-smooth);
 }
 
@@ -643,10 +644,10 @@ html, body {
 /* 3D Hero Character Wrap */
 .game-card-character-wrap {
   position: absolute;
-  right: -8px;
+  right: -14px;
   bottom: 0;
-  width: 215px;
-  height: 250px;
+  width: 195px;
+  height: 235px;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -802,5 +803,21 @@ html, body {
     height: 100dvh;
     border-radius: 0;
     box-shadow: none;
+  }
+  .main-game-card {
+    min-height: 310px;
+    padding: 16px 16px 18px 16px;
+  }
+  .game-card-content {
+    max-width: 47%;
+  }
+  .game-card-desc {
+    font-size: 10.5px;
+    line-height: 1.38;
+  }
+  .game-card-character-wrap {
+    width: 185px;
+    height: 220px;
+    right: -10px;
   }
 }

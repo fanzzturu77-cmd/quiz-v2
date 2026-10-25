@@ -17,12 +17,16 @@
     <div class="preview-toolbar" id="previewToolbar">
       <div class="toolbar-brand">
         <span class="toolbar-dot"></span>
-        <span class="toolbar-title">Democracy Quest Beranda (Halaman Dalam)</span>
+        <span class="toolbar-title">Democracy Quest: Beranda</span>
       </div>
       <div class="toolbar-actions">
         <a href="../index.html" class="toolbar-btn" title="Kembali ke Halaman Pertama Onboarding">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          <span>Halaman Pertama</span>
+          <span>Onboarding</span>
+        </a>
+        <a href="../peta_level/index.html" class="toolbar-btn" title="Buka Halaman Peta 8 Level Tersendiri" style="background: rgba(99, 102, 241, 0.35); border-color: rgba(129, 140, 248, 0.5);">
+          <span>🗺️ Peta 8 Level</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </a>
         <button class="toolbar-btn" id="toggleFrameBtn" title="Toggle Frame Mode">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
@@ -31,7 +35,7 @@
       </div>
     </div>
 
-    <!-- MAIN APP SCREEN (BERANDA - HALAMAN DALAM) -->
+    <!-- MAIN APP SCREEN (BERANDA) -->
     <main class="app-screen home-screen" id="appScreen">
       <!-- Background Sky Sunburst Rays -->
       <div class="home-bg-rays" aria-hidden="true">
@@ -48,7 +52,7 @@
         <header class="home-user-header">
           <div class="user-profile-left">
             <div class="user-avatar-wrapper">
-              <img src="../assets/avatar_nadia.png" alt="Avatar Nadia Putri" class="user-avatar-img">
+              <img src="../assets/avatar_nadia.webp" alt="Avatar Nadia Putri" class="user-avatar-img">
             </div>
             <div class="user-info">
               <h1 class="user-name">Nadia Putri</h1>
@@ -84,14 +88,14 @@
           </div>
 
           <div class="banner-graphic-wrap">
-            <img src="../assets/trophy_banner.png" alt="Piala Juara Demokrasi 3D Emas" class="banner-trophy-img" draggable="false">
+            <img src="../assets/trophy_banner.webp" alt="Piala Juara Demokrasi 3D Emas" class="banner-trophy-img" draggable="false">
           </div>
         </section>
 
         <!-- 3. KARTU PROMOSI ("Misi Demokrasi") -->
         <section class="promo-card" id="promoCard">
           <div class="promo-left-graphic">
-            <img src="../assets/crown_promo.png" alt="Mahkota Misi Demokrasi 3D" class="promo-crown-img" draggable="false">
+            <img src="../assets/crown_promo.webp" alt="Mahkota Misi Demokrasi 3D" class="promo-crown-img" draggable="false">
           </div>
           <div class="promo-info">
             <h3 class="promo-title">Misi Demokrasi</h3>
@@ -108,7 +112,7 @@
         <!-- 4. JUDUL BAGIAN GAME ("Game Populer" & "Lihat Semua") -->
         <div class="section-game-header">
           <h3 class="section-title">Game Populer</h3>
-          <button class="btn-see-all" id="seeAllBtn" type="button">Lihat Semua</button>
+          <a href="../peta_level/index.html" class="btn-see-all" id="seeAllBtn" style="text-decoration: none;">Lihat Semua</a>
         </div>
 
         <!-- 5. KARTU GAME UTAMA ("Democracy Quest") -->
@@ -123,7 +127,7 @@
             </button>
           </div>
 
-          <!-- Card Content -->
+          <!-- Card Content (Spaced so it does not collide with hero character) -->
           <div class="game-card-content">
             <h4 class="game-card-title">
               Democracy <span class="highlight-pink">Quest</span>
@@ -143,7 +147,7 @@
 
           <!-- 3D Futuristic Hero Character -->
           <div class="game-card-character-wrap">
-            <img src="../assets/hero_democracy.png" alt="Karakter 3D Democracy Quest dengan Kacamata Pintar" class="game-hero-img" draggable="false">
+            <img src="../assets/hero_democracy.webp" alt="Karakter 3D Democracy Quest dengan Kacamata Pintar" class="game-hero-img" draggable="false">
           </div>
         </section>
 
@@ -161,32 +165,32 @@
           <span class="nav-label">Beranda</span>
         </button>
 
-        <!-- 2. Kuis -->
-        <button class="nav-item" id="navQuiz" type="button">
+        <!-- 2. Kuis / Peta Level -->
+        <a href="../peta_level/index.html" class="nav-item" id="navQuiz">
           <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <circle cx="12" cy="12" r="10"></circle>
               <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
               <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
           </div>
           <span class="nav-label">Kuis</span>
-        </button>
+        </a>
 
         <!-- 3. Main -->
-        <button class="nav-item" id="navPlay" type="button">
+        <a href="../peta_level/index.html" class="nav-item" id="navPlay">
           <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
           </div>
           <span class="nav-label">Main</span>
-        </button>
+        </a>
 
         <!-- 4. Peringkat -->
         <button class="nav-item" id="navLeaderboard" type="button">
           <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <rect x="2" y="12" width="6" height="9" rx="1"></rect>
               <rect x="9" y="6" width="6" height="15" rx="1"></rect>
               <rect x="16" y="9" width="6" height="12" rx="1"></rect>
@@ -198,7 +202,7 @@
         <!-- 5. Profil -->
         <button class="nav-item" id="navProfile" type="button">
           <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
@@ -210,7 +214,7 @@
       <!-- Toast Feedback -->
       <div class="toast-notification" id="toastNotification" role="alert" aria-live="polite">
         <span class="toast-icon">🚀</span>
-        <span class="toast-msg" id="toastMsg">Memulai Kuis...</span>
+        <span class="toast-msg" id="toastMsg">Menuju Peta Level...</span>
       </div>
 
       <!-- Confetti Particles Container -->

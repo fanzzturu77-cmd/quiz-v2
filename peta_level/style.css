@@ -1,0 +1,1204 @@
+/* ==========================================================================
+   DEMOCRACY QUEST - PETA 8 LEVEL (HALAMAN TERSENDIRI)
+   Design Theme: 1:1 Match with Fantasy Sky Floating Islands Quest Map
+   Features: Dynamic Unlock System (Abu-Abu / Grayscale -> Full Vibrant Color),
+   Interactive Quiz Engine, Winding S-Path, HD Assets & Micro-animations.
+   ========================================================================== */
+
+:root {
+  --color-primary-dark: #0f172a;
+  --color-slate: #334155;
+  --color-muted: #64748b;
+  --color-sky-blue: #60a5fa;
+  --color-sky-light: #e0f2fe;
+  --color-badge-gold: #facc15;
+  --color-purple-primary: #6366f1;
+  --color-purple-dark: #4f46e5;
+
+  /* Typography */
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-friendly: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+  --font-handwriting: 'Caveat', cursive, sans-serif;
+
+  /* Dimensions */
+  --app-max-width: 420px;
+  --app-height: 840px;
+  --transition-smooth: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-unlock: filter 0.85s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.85s ease, transform 0.4s ease;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+  font-family: var(--font-body);
+  background: #0b1120;
+  color: var(--color-primary-dark);
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Viewport Wrapper */
+.viewport-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  padding: clamp(8px, 1.8vh, 18px) 12px;
+  position: relative;
+}
+
+/* Desktop Preview Toolbar */
+.preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--app-max-width);
+  margin-bottom: 8px;
+  padding: 6px 14px;
+  background: rgba(30, 41, 59, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  color: #e2e8f0;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.toolbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.toolbar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6366f1;
+  box-shadow: 0 0 10px #6366f1;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.toolbar-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f1f5f9;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.toolbar-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* ==========================================================================
+   MAIN APP SCREEN (PETA LEVEL CONTAINER)
+   ========================================================================== */
+.app-screen.quest-map-screen {
+  position: relative;
+  width: 100%;
+  max-width: var(--app-max-width);
+  height: clamp(580px, 94vh, var(--app-height));
+  height: clamp(580px, 94dvh, var(--app-height));
+  /* Radiant Sky Background (Full Top to Bottom) */
+  background: url('../assets/hd_elements/map_bg.webp') center top / cover no-repeat, linear-gradient(180deg, #c7e5ff 0%, #d8ecff 30%, #eef7ff 70%, #d0e7ff 100%);
+  border-radius: clamp(28px, 5vw, 44px);
+  box-shadow: 
+    0 25px 60px -12px rgba(0, 0, 0, 0.55),
+    0 0 0 8px rgba(255, 255, 255, 0.12),
+    0 0 0 1.5px rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  transition: all 0.35s ease;
+}
+
+.app-screen.fullscreen-mode {
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   1. TOP STICKY BAR: PROGRESS & BADGES
+   ========================================================================== */
+.quest-top-bar {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 24px -4px rgba(79, 70, 229, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px 6px 10px;
+  z-index: 40;
+}
+
+.progress-info-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trophy-gold-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fef08a 0%, #facc15 50%, #ca8a04 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(202, 138, 4, 0.35);
+  flex-shrink: 0;
+}
+
+.trophy-gold-icon svg {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+}
+
+.progress-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.progress-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  line-height: 1;
+}
+
+.progress-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-score {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 800;
+  color: #1e1b4b;
+  min-width: 44px;
+}
+
+.progress-track {
+  width: 78px;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #818cf8 0%, #6366f1 100%);
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+}
+
+/* 8 Badge Medals (Active = Gold, Locked = Silver) */
+.badge-medals-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star-badge-item {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s ease;
+}
+
+.star-badge-item svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* Gold active medal */
+.star-badge-item.active {
+  color: #eab308;
+  filter: drop-shadow(0 2px 4px rgba(234, 179, 8, 0.5));
+  animation: badgePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Silver locked medal */
+.star-badge-item.locked {
+  color: #cbd5e1;
+  opacity: 0.7;
+}
+
+@keyframes badgePop {
+  0% { transform: scale(0.6); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* ==========================================================================
+   2. SCROLLABLE MAP VIEWPORT & SKY BACKDROP
+   ========================================================================== */
+.map-scroll-viewport {
+  position: relative;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 76px;
+  padding-bottom: 84px; /* Space for bottom navbar */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.map-scroll-viewport::-webkit-scrollbar {
+  display: none;
+}
+.map-scroll-viewport {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Sky Background Elements (Full Top to Bottom Coverage) */
+.map-sky-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sky-generated-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100%;
+  opacity: 0.95;
+}
+
+.sky-cloud {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 999px;
+  opacity: 0.75;
+  filter: blur(1px);
+}
+
+.cloud-1 {
+  top: 180px;
+  left: -40px;
+  width: 140px;
+  height: 45px;
+  box-shadow: 20px -15px 0 10px #ffffff, 60px -8px 0 12px #ffffff;
+}
+
+.cloud-2 {
+  top: 480px;
+  right: -50px;
+  width: 160px;
+  height: 50px;
+  box-shadow: -25px -12px 0 14px #ffffff, -65px -6px 0 10px #ffffff;
+}
+
+.cloud-3 {
+  top: 860px;
+  left: -30px;
+  width: 130px;
+  height: 40px;
+  box-shadow: 20px -12px 0 12px #ffffff;
+}
+
+.cloud-4 {
+  top: 1180px;
+  right: -30px;
+  width: 150px;
+  height: 45px;
+  box-shadow: -20px -10px 0 12px #ffffff;
+}
+
+/* Distant Floating Castle Island Silhouettes */
+.distant-castle-island {
+  position: absolute;
+  width: 75px;
+  height: 55px;
+  background: radial-gradient(circle, rgba(165, 180, 252, 0.35) 0%, rgba(199, 210, 254, 0.1) 70%);
+  border-radius: 50% 50% 30% 30%;
+  filter: blur(2px);
+}
+.distant-castle-island.left { top: 320px; left: 10px; }
+.distant-castle-island.right { top: 680px; right: 15px; }
+
+/* ==========================================================================
+   3. TOP LEFT WOODEN SIGN BOARD
+   ========================================================================== */
+.wooden-sign-board {
+  position: absolute;
+  top: 82px;
+  left: 12px;
+  z-index: 25;
+  background: linear-gradient(135deg, #a16207 0%, #854d0e 50%, #713f12 100%);
+  border: 2px solid #ca8a04;
+  border-radius: 14px;
+  padding: 8px 10px;
+  box-shadow: 
+    0 8px 18px rgba(113, 63, 18, 0.45),
+    inset 0 1px 1px rgba(254, 240, 138, 0.3);
+  transform: rotate(-3deg);
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.wooden-sign-board:hover {
+  transform: rotate(0deg) scale(1.04);
+}
+
+.wooden-sign-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wooden-sign-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.wooden-sign-title {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 900;
+  color: #fef08a;
+  text-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.6);
+  line-height: 1.1;
+  letter-spacing: -0.2px;
+}
+
+.wooden-sign-sub {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-top: 2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.wooden-compass-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #facc15;
+  border: 1.5px solid #78350f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.compass-svg {
+  width: 20px;
+  height: 20px;
+}
+
+.wood-peg {
+  position: absolute;
+  top: -6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #451a03;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+.wood-peg.left { left: 14px; }
+.wood-peg.right { right: 14px; }
+
+/* ==========================================================================
+   4. SVG WINDING PATH
+   ========================================================================== */
+.map-winding-path-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ==========================================================================
+   5. FLOATING ISLANDS STREAM (8 LEVELS) - COMPACT LAYOUT MATCHING PHOTO 1
+   ========================================================================== */
+.floating-islands-stream {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px 14px 16px 14px;
+}
+
+/* Level Node Items */
+.level-node-item {
+  position: relative;
+  width: 100%;
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+/* Alignment positions matching reference image */
+.level-node-item.level-pos-center {
+  justify-content: center;
+}
+
+.level-node-item.level-pos-left {
+  justify-content: flex-start;
+  padding-left: 6px;
+}
+
+.level-node-item.level-pos-right {
+  justify-content: flex-end;
+  padding-right: 6px;
+}
+
+/* Island Stage Anchor */
+.island-stage-anchor {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+}
+
+/* 3D Island Graphic Wrap */
+.island-graphic-wrap {
+  position: relative;
+  width: 175px;
+  height: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -32px; /* Overlap with info card */
+  z-index: 12;
+  transition: var(--transition-unlock);
+}
+
+.island-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 18px rgba(30, 58, 138, 0.25));
+  transition: transform 0.35s ease;
+}
+
+.level-node-item.unlocked:hover .island-img {
+  transform: translateY(-6px) scale(1.05);
+}
+
+/* Level 8 Summit Island is slightly larger */
+#levelNode8 .island-graphic-wrap {
+  width: 210px;
+  height: 185px;
+  margin-bottom: -36px;
+}
+
+/* ==========================================================================
+   CORE REQUIREMENT: DYNAMIC UNLOCK SYSTEM (ABU-ABU vs WARNA ASLI)
+   ========================================================================== */
+
+/* 1. LOCKED LEVEL STATE (Pure Abu-Abu / Grayscale) */
+.level-node-item.locked .island-graphic-wrap,
+.level-node-item.locked .island-card-box {
+  filter: grayscale(100%) contrast(0.85) brightness(0.92);
+  opacity: 0.75;
+  cursor: not-allowed;
+  transition: var(--transition-unlock);
+}
+
+.level-node-item.locked .island-card-box {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.level-node-item.locked .level-num-badge {
+  background: #94a3b8;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.level-node-item.locked .level-title {
+  color: #475569;
+}
+
+.level-node-item.locked .level-desc {
+  color: #64748b;
+}
+
+.level-node-item.locked .icon-lock {
+  color: #64748b;
+}
+
+/* 2. UNLOCKED LEVEL STATE (Full Vibrant True Colors!) */
+.level-node-item.unlocked .island-graphic-wrap,
+.level-node-item.unlocked .island-card-box {
+  filter: grayscale(0%) contrast(1) brightness(1);
+  opacity: 1;
+  cursor: pointer;
+  transition: var(--transition-unlock);
+}
+
+.level-node-item.unlocked:hover .island-card-box {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px -4px rgba(99, 102, 241, 0.28);
+}
+
+/* Unlocking Celebration Animation */
+.level-node-item.just-unlocked {
+  animation: levelUnlockPulse 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes levelUnlockPulse {
+  0% { transform: scale(0.95); filter: brightness(1.8) drop-shadow(0 0 30px #facc15); }
+  50% { transform: scale(1.08); filter: brightness(1.3) drop-shadow(0 0 25px #6366f1); }
+  100% { transform: scale(1); filter: none; }
+}
+
+/* ==========================================================================
+   LEVEL INFO CARD BOX (Matching Reference Design 1:1)
+   ========================================================================== */
+.island-card-box {
+  position: relative;
+  z-index: 15;
+  width: 100%;
+  max-width: 250px;
+  background: #ffffff;
+  border: 2px solid #e0e7ff;
+  border-radius: 20px;
+  padding: 8px 12px 8px 10px;
+  box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.14);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+}
+
+/* Circular Purple Number Badge */
+.level-num-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: 0 3px 8px rgba(99, 102, 241, 0.35);
+  flex-shrink: 0;
+}
+
+.level-card-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.level-title {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.15;
+}
+
+.level-desc {
+  font-size: 10.5px;
+  color: #475569;
+  line-height: 1.25;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+/* Status Icon (Lock or Play) */
+.level-status-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.level-node-item.unlocked .level-status-icon {
+  background: #ede9fe;
+  color: #6366f1;
+}
+
+.icon-play-ready {
+  font-size: 11px;
+  color: #6366f1;
+  margin-left: 2px;
+}
+
+/* Current Active Level Glowing Downward Pointer (Level 1 initial) */
+.active-level-pointer {
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  animation: pointerFloat 1.4s ease-in-out infinite alternate;
+}
+
+.pointer-arrow-pill {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #6366f1;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.6);
+  border: 2px solid #ffffff;
+}
+
+@keyframes pointerFloat {
+  0% { transform: translateX(-50%) translateY(0); }
+  100% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ==========================================================================
+   6. BOTTOM CORNER ELEMENTS: BOY CHARACTER & NOTE STICKER
+   ========================================================================== */
+
+/* Dynamic Walker Character Following Level */
+.quest-walker-character {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 65px;
+  height: 80px;
+  z-index: 35;
+  pointer-events: none;
+  transition: transform 1.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.walker-avatar-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: walkerBob 1.6s ease-in-out infinite alternate;
+}
+
+.walker-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 14px rgba(15, 23, 42, 0.38));
+}
+
+.walker-shadow {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 10px;
+  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0) 70%);
+  border-radius: 50%;
+}
+
+@keyframes walkerBob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+/* Bottom Right Slanted Handwritten Note Sticker */
+.slanted-note-sticker {
+  position: absolute;
+  bottom: 18px;
+  right: 8px;
+  max-width: 140px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  transform: rotate(4deg);
+  z-index: 35;
+  border: 1px dashed #cbd5e1;
+}
+
+.sticker-pin {
+  position: absolute;
+  top: -8px;
+  right: 6px;
+  font-size: 14px;
+}
+
+.sticker-quote {
+  font-family: var(--font-handwriting);
+  font-size: 15px;
+  color: #1e1b4b;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+}
+
+/* ==========================================================================
+   7. BOTTOM NAVBAR
+   ========================================================================== */
+.bottom-nav-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: #ffffff;
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 12px;
+  z-index: 50;
+}
+
+.nav-item {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  color: #6366f1;
+}
+
+.nav-label {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Active State */
+.nav-item.active {
+  background: #6366f1;
+  color: #ffffff;
+  border-radius: 18px;
+  padding: 8px 16px;
+  box-shadow: 0 6px 14px rgba(99, 102, 241, 0.4);
+}
+
+.nav-item.active .nav-label {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   8. INTERACTIVE QUIZ MODAL
+   ========================================================================== */
+.quiz-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.quiz-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.quiz-modal-card {
+  width: 100%;
+  max-width: 360px;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 24px 20px 20px 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.quiz-modal-backdrop.active .quiz-modal-card {
+  transform: scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.modal-level-pill {
+  display: inline-block;
+  background: #ede9fe;
+  color: #6366f1;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 11px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+}
+
+.modal-level-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 900;
+  color: #0f172a;
+  margin-top: 6px;
+}
+
+.modal-level-topic {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.question-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+
+.question-number {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #6366f1;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.question-text {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.35;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.option-btn {
+  width: 100%;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.option-btn:hover {
+  border-color: #a5b4fc;
+  background: #f5f3ff;
+}
+
+.option-btn.selected {
+  border-color: #6366f1;
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.option-btn.correct {
+  border-color: #22c55e;
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.option-btn.wrong {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.option-letter {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #475569;
+  flex-shrink: 0;
+}
+
+.option-btn.selected .option-letter {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+/* Feedback Alert */
+.feedback-alert {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.feedback-alert.error {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.feedback-title {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #166534;
+  display: block;
+}
+
+.feedback-alert.error .feedback-title {
+  color: #991b1b;
+}
+
+.feedback-desc {
+  font-size: 11px;
+  color: #14532d;
+  margin-top: 1px;
+  line-height: 1.3;
+}
+
+.feedback-alert.error .feedback-desc {
+  color: #7f1d1d;
+}
+
+/* Modal Action Button */
+.btn-primary-action {
+  width: 100%;
+  background: #6366f1;
+  color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  padding: 12px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(99, 102, 241, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-primary-action:hover:not(:disabled) {
+  background: #4f46e5;
+  transform: translateY(-2px);
+}
+
+.btn-primary-action:disabled {
+  background: #cbd5e1;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   9. TOAST & CONFETTI
+   ========================================================================== */
+.toast-notification {
+  position: absolute;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 120;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  white-space: nowrap;
+}
+
+.toast-notification.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 110;
+  overflow: hidden;
+}
+
+.confetti-particle {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  animation: confetti-fall 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translateY(900px) rotate(720deg) scale(0.6); opacity: 0; }
+}
+
+/* Shake Animation for Locked Levels */
+.shake-locked {
+  animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(3px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
+  40%, 60% { transform: translate3d(5px, 0, 0); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  body {
+    background: #c7e5ff;
+  }
+  .viewport-wrapper {
+    padding: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  .preview-toolbar {
+    display: none;
+  }
+  .app-screen.quest-map-screen {
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

@@ -122,8 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 8. Main Game Card Play Button
   function handlePlayGame() {
-    showToast('Memulai Democracy Quest: Bab HAM & Hukum! 🚀', '🎮');
+    showToast('Menuju Peta 8 Level Democracy Quest... 🚀', '🎮');
     createConfetti();
+    setTimeout(() => {
+      window.location.href = '../peta_level/index.html';
+    }, 850);
   }
 
   if (gameCardPlayBtn) {
@@ -141,10 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
   navItems.forEach((item) => {
     if (!item) return;
     item.addEventListener('click', () => {
+      const label = item.querySelector('.nav-label')?.textContent || 'Menu';
+      if (label === 'Kuis' || label === 'Main') {
+        showToast(`Membuka Peta 8 Level Kuis... 🗺️`, '🚀');
+        setTimeout(() => {
+          window.location.href = '../peta_level/index.html';
+        }, 600);
+        return;
+      }
       navItems.forEach((btn) => btn && btn.classList.remove('active'));
       item.classList.add('active');
-
-      const label = item.querySelector('.nav-label')?.textContent || 'Menu';
       showToast(`Membuka tab ${label}`, '🧭');
     });
   });

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Democracy Quest - Peta 8 Level Kuis PKN</title>
+  <meta name="description" content="Peta 8 Level Democracy Quest - Jelajahi level kuis Pendidikan Pancasila & Demokrasi Kelas XI">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="viewport-wrapper">
+    <!-- Desktop Preview Controls -->
+    <div class="preview-toolbar" id="previewToolbar">
+      <div class="toolbar-brand">
+        <span class="toolbar-dot"></span>
+        <span class="toolbar-title">Democracy Quest: Peta Level (Halaman Tersendiri)</span>
+      </div>
+      <div class="toolbar-actions">
+        <a href="../beranda/index.html" class="toolbar-btn" title="Kembali ke Beranda Utama">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Ke Beranda</span>
+        </a>
+        <button class="toolbar-btn" id="btnUnlockAll" title="Buka Semua Level (Uji Coba Warna Asli)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg>
+          <span id="unlockAllText">Buka Semua</span>
+        </button>
+        <button class="toolbar-btn" id="btnResetProgress" title="Reset Level ke Awal (Level 1)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          <span>Reset</span>
+        </button>
+        <button class="toolbar-btn" id="toggleFrameBtn" title="Toggle Frame Mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          <span id="frameModeText">Mode Frame</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN APP SCREEN (PETA 8 LEVEL SKY QUEST) -->
+    <main class="app-screen quest-map-screen" id="appScreen">
+
+      <!-- TOP STICKY BAR: PROGRESS & BADGES -->
+      <header class="quest-top-bar" id="questTopBar">
+        <!-- Left: Gold Medal + Progress Kamu -->
+        <div class="progress-info-pill">
+          <div class="trophy-gold-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V19H7v2h10v-2h-4v-3.1c1.86-.39 3.32-1.8 3.61-3.96C19.08 11.63 21 9.55 21 7V5c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
+            </svg>
+          </div>
+          <div class="progress-text-block">
+            <span class="progress-label">Progress Kamu</span>
+            <div class="progress-bar-row">
+              <span class="progress-score" id="progressScore">0 / 80</span>
+              <div class="progress-track">
+                <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 8 Badge Medals (Active = Gold, Locked = Silver) -->
+        <div class="badge-medals-row" id="badgeMedalsRow">
+          <!-- Populated dynamically via JS: 8 star shield medals -->
+        </div>
+      </header>
+
+      <!-- SCROLLABLE QUEST MAP CONTENT -->
+      <div class="map-scroll-viewport" id="mapScrollViewport">
+
+        <!-- FANTASY SKY BACKGROUND WITH VOLUMETRIC CLOUDS & RAYS (HD WEBP) -->
+        <div class="map-sky-backdrop" aria-hidden="true">
+          <div class="sky-generated-bg"></div>
+          <div class="sky-cloud cloud-1"></div>
+          <div class="sky-cloud cloud-2"></div>
+          <div class="sky-cloud cloud-3"></div>
+          <div class="sky-cloud cloud-4"></div>
+        </div>
+
+        <!-- TOP LEFT: HANGING WOODEN SIGN BOARD -->
+        <aside class="wooden-sign-board" id="woodenSignBoard" aria-label="Informasi Level">
+          <div class="wooden-sign-inner">
+            <div class="wooden-sign-text">
+              <span class="wooden-sign-title">Jelajahi 8 Level</span>
+              <span class="wooden-sign-sub">Menuju Jadi<br>Juara Demokrasi!</span>
+            </div>
+            <div class="wooden-compass-badge" title="Kompas Demokrasi">
+              <svg viewBox="0 0 24 24" class="compass-svg" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#fef08a" stroke-width="2"/>
+                <polygon points="12,5 15,12 12,19 9,12" fill="#ef4444"/>
+                <polygon points="12,19 15,12 12,5 9,12" fill="#3b82f6"/>
+                <circle cx="12" cy="12" r="2.5" fill="#facc15" stroke="#78350f" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+          <!-- Wooden Post Pegs -->
+          <div class="wood-peg left"></div>
+          <div class="wood-peg right"></div>
+        </aside>
+
+        <!-- DYNAMIC SVG WINDING PATH CONNECTING LEVEL 1 TO LEVEL 8 -->
+        <svg class="map-winding-path-svg" id="mapWindingPathSvg" viewBox="0 0 380 1500" aria-hidden="true">
+          <defs>
+            <linearGradient id="pathGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+              <stop offset="30%" stop-color="#ede9fe" stop-opacity="0.95"/>
+              <stop offset="70%" stop-color="#ddd6fe" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="#c4b5fd" stop-opacity="0.95"/>
+            </linearGradient>
+            <filter id="pathGlow" x="-25%" y="-25%" width="150%" height="150%">
+              <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#7c3aed" flood-opacity="0.4"/>
+            </filter>
+          </defs>
+          <path id="questPathLine" class="quest-path-line" d="" fill="none" stroke="url(#pathGradient)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" filter="url(#pathGlow)"/>
+          <path id="questPathDashes" class="quest-path-dashes" d="" fill="none" stroke="#6366f1" stroke-width="3" stroke-dasharray="6,8" stroke-linecap="round"/>
+        </svg>
+
+        <!-- DYNAMIC ADVENTURER WALKER CHARACTER (WALKS FOLLOWING LEVEL) -->
+        <div class="quest-walker-character" id="questWalkerCharacter" title="Karakter Petualang">
+          <div class="walker-avatar-wrap">
+            <img src="../assets/hd_elements/hero_walker.webp" alt="Karakter Petualang Menjelajahi Level" class="walker-img">
+            <div class="walker-shadow"></div>
+          </div>
+        </div>
+
+        <!-- THE 8 FLOATING ISLANDS CONTAINER -->
+        <div class="floating-islands-stream" id="floatingIslandsStream">
+
+          <!-- ================= LEVEL 8: MASTER DEMOKRASI (TOP SUMMIT) ================= -->
+          <div class="level-node-item level-pos-center locked" id="levelNode8" data-level="8">
+            <div class="island-stage-anchor">
+              <div class="island-graphic-wrap">
+                <img src="../assets/hd_elements/island_8.webp" alt="Istana Master Demokrasi Emas" class="island-img" loading="eager">
+              </div>
+              <div class="island-card-box" role="button" tabindex="0" aria-label="Level 8: Master Demokrasi">
+                <div class="level-num-badge">8</div>
+                <div class="level-card-text">
+                  <h3 class="level-title">Master Demokrasi</h3>
+                  <p class="level-desc">Analisis kasus dan penerapan semua materi</p>
+                </div>
+                <div class="level-status-icon">
+                  <span class="icon-lock">🔒</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= LEVEL 7: PEJUANG KEADILAN SOSIAL (LEFT) ================= -->
+          <div class="level-node-item level-pos-left locked" id="levelNode7" data-level="7">
+            <div class="island-stage-anchor">
+              <div class="island-graphic-wrap">
+                <img src="../assets/hd_elements/island_7.webp" alt="Monumen Pejuang Keadilan Sosial" class="island-img" loading="eager">
+              </div>
+              <div class="island-card-box" role="button" tabindex="0" aria-label="Level 7: Pejuang Keadilan Sosial">
+                <div class="level-num-badge">7</div>
+                <div class="level-card-text">
+                  <h3 class="level-title">Pejuang Keadilan Sosial</h3>
+                  <p class="level-desc">Kesetaraan kesempatan dan distribusi sumber daya</p>
+                </div>
+                <div class="level-status-icon">
+                  <span class="icon-lock">🔒</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= LEVEL 6: ARSITEK KEMAKMURAN (RIGHT) ================= -->
+          <div class="level-node-item level-pos-right locked" id="levelNode6" data-level="6">
+            <div class="island-stage-anchor">
+              <div class="island-graphic-wrap">
+                <img src="../assets/hd_elements/island_6.webp" alt="Kota Arsitek Kemakmuran Berkelanjutan" class="island-img" loading="eager">
+              </div>
+              <div class="island-card-box" role="button" tabindex="0" aria-label="Level 6: Arsitek Kemakmuran">
+                <div class="level-num-badge">6</div>
+                <div class="level-card-text">
+                  <h3 class="level-title">Arsitek Kemakmuran</h3>
+                  <p class="level-desc">Pembangunan berkelanjutan dan kesejahteraan masyarakat</p>
+                </div>
+                <div class="level-status-icon">
+                  <span class="icon-lock">🔒</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= LEVEL 5: PENGGERAK DAERAH (LEFT) ================= -->
+          <div class="level-node-item level-pos-left locked" id="levelNode5" data-level="5">
+            <div class="island-stage-anchor">
+              <div class="island-graphic-wrap">
+                <img src="../assets/hd_elements/island_5.webp" alt="Gedung Penggerak Daerah Otonomi" class="island-img" loading="eager">
+              </div>
+              <div class="island-card-box" role="button" tabindex="0" aria-label="Level 5: Penggerak Daerah">
+                <div class="level-num-badge">5</div>
+                <div class="level-card-text">
+                  <h3 class="level-title">Penggerak Daerah</h3>
+                  <p class="level-desc">Otonomi daerah dan pemberdayaan masyarakat</p>
+                </div>
+                <div class="level-status-icon">
+                  <span class="icon-lock">🔒</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= LEVEL 4: AHLI HUKUM (RIGHT) ================= -->
+          <div class="level-node-item level-pos-right locked" id="levelNode4" data-level="4">
+            <div class="island-stage-anchor">
+              <div class="island-graphic-wrap">
+                <img src="../assets/hd_elements/island_4.webp" alt="Kuil Ahli Hukum dan Keadilan" class="island-img" loading="eager">
+              </div>
+              <div class="island-card-box" role="button" tabindex="0" aria-label="Level 4: Ahli Hukum">
+                <div class="level-num-badge">4</div>
+                <div class="level-card-text">
+                  <h3 class="level-title">Ahli Hukum</h3>
+                  <p class="level-desc">Pendidikan hukum, akses keadilan, dan peradilan responsif</p>
+                </div>
+                <div class="level-status-icon">
+                  <span class="icon-lock">🔒</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= LEVEL 3: PENEGAK KEADILAN (LEFT) ================= -->
+          <div class="level-node-item level-pos-left locked" id="levelNode3" data-level="3">
+            <div class="island-stage-anchor">
+              <div class="island-graphic-wrap">
+                <img src="../assets/hd_elements/island_3.webp" alt="Mahkamah Penegak Keadilan" class="island-img" loading="eager">
+              </div>
+              <div class="island-card-box" role="button" tabindex="0" aria-label="Level 3: Penegak Keadilan">
+                <div class="level-num-badge">3</div>
+                <div class="level-card-text">
+                  <h3 class="level-title">Penegak Keadilan</h3>
+                  <p class="level-desc">Independensi peradilan dan proses hukum yang adil</p>
+                </div>
+                <div class="level-status-icon">
+                  <span class="icon-lock">🔒</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= LEVEL 2: PELINDUNG HAK ASASI (RIGHT) ================= -->
+          <div class="level-node-item level-pos-right locked" id="levelNode2" data-level="2">
+            <div class="island-stage-anchor">
+              <div class="island-graphic-wrap">
+                <img src="../assets/hd_elements/island_2.webp" alt="Benteng Digital Pelindung Hak Asasi" class="island-img" loading="eager">
+              </div>
+              <div class="island-card-box" role="button" tabindex="0" aria-label="Level 2: Pelindung Hak Asasi">
+                <div class="level-num-badge">2</div>
+                <div class="level-card-text">
+                  <h3 class="level-title">Pelindung Hak Asasi</h3>
+                  <p class="level-desc">Privasi, akses informasi, dan partisipasi publik</p>
+                </div>
+                <div class="level-status-icon">
+                  <span class="icon-lock">🔒</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= LEVEL 1: PENJELAJAH DEMOKRASI (BOTTOM - CURRENT UNLOCKED) ================= -->
+          <div class="level-node-item level-pos-center unlocked current-active" id="levelNode1" data-level="1">
+            <!-- Glowing Downward Arrow Pulse -->
+            <div class="active-level-pointer" title="Level Aktif Saat Ini">
+              <div class="pointer-arrow-pill">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="12,18 4,8 20,8"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="island-stage-anchor">
+              <div class="island-graphic-wrap">
+                <img src="../assets/hd_elements/island_1.webp" alt="Gedung Parlemen Penjelajah Demokrasi" class="island-img" loading="eager">
+              </div>
+              <div class="island-card-box active-card" role="button" tabindex="0" aria-label="Level 1: Penjelajah Demokrasi - Buka Kuis">
+                <div class="level-num-badge">1</div>
+                <div class="level-card-text">
+                  <h3 class="level-title">Penjelajah Demokrasi</h3>
+                  <p class="level-desc">Demokrasi, HAM, dan kebebasan berekspresi</p>
+                </div>
+                <div class="level-status-icon">
+                  <span class="icon-play-ready">▶</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- BOTTOM RIGHT: SLANTED HANDWRITTEN STICKER NOTE -->
+        <div class="slanted-note-sticker" id="noteSticker">
+          <span class="sticker-pin">📌</span>
+          <p class="sticker-quote">Setiap langkah membawa perubahan untuk Indonesia!</p>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM NAVIGATION BAR -->
+      <nav class="bottom-nav-bar" aria-label="Navigasi Utama">
+        <a href="../beranda/index.html" class="nav-item" id="navHome">
+          <div class="nav-icon-container">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M12 3L2 12H5V20H9V14H15V20H19V12H22L12 3Z"/>
+            </svg>
+          </div>
+          <span class="nav-label">Beranda</span>
+        </a>
+
+        <button class="nav-item active" id="navMap" type="button">
+          <div class="nav-icon-container">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
+            </svg>
+          </div>
+          <span class="nav-label">Peta Level</span>
+        </button>
+
+        <button class="nav-item" id="navMission" type="button">
+          <div class="nav-icon-container">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="12" cy="8" r="7"></circle>
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+            </svg>
+          </div>
+          <span class="nav-label">Misi</span>
+        </button>
+
+        <button class="nav-item" id="navLeaderboard" type="button">
+          <div class="nav-icon-container">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="2" y="12" width="6" height="9" rx="1"></rect>
+              <rect x="9" y="6" width="6" height="15" rx="1"></rect>
+              <rect x="16" y="9" width="6" height="12" rx="1"></rect>
+            </svg>
+          </div>
+          <span class="nav-label">Peringkat</span>
+        </button>
+
+        <button class="nav-item" id="navProfile" type="button">
+          <div class="nav-icon-container">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <span class="nav-label">Profil</span>
+        </button>
+      </nav>
+
+      <!-- INTERACTIVE QUIZ MODAL -->
+      <div class="quiz-modal-backdrop" id="quizModalBackdrop" aria-hidden="true">
+        <div class="quiz-modal-card" id="quizModalCard" role="dialog" aria-modal="true" aria-labelledby="modalLevelTitle">
+          <button class="modal-close-btn" id="modalCloseBtn" aria-label="Tutup kuis">✕</button>
+          
+          <div class="modal-header">
+            <span class="modal-level-pill" id="modalLevelPill">LEVEL 1</span>
+            <h2 class="modal-level-title" id="modalLevelTitle">Penjelajah Demokrasi</h2>
+            <p class="modal-level-topic" id="modalLevelTopic">Topik: Demokrasi, HAM, dan kebebasan berekspresi</p>
+          </div>
+
+          <div class="modal-body">
+            <div class="question-box">
+              <span class="question-number" id="questionNumber">Pertanyaan 1 dari 1</span>
+              <p class="question-text" id="questionText">Apa prinsip fundamental Demokrasi Pancasila dalam perumusan keputusan bersama demi keadilan sosial?</p>
+            </div>
+
+            <div class="options-container" id="optionsContainer">
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- Feedback Alert -->
+            <div class="feedback-alert" id="feedbackAlert" style="display: none;">
+              <span class="feedback-icon" id="feedbackIcon">🎉</span>
+              <div class="feedback-text-wrap">
+                <span class="feedback-title" id="feedbackTitle">Jawaban Benar!</span>
+                <p class="feedback-desc" id="feedbackDesc">Musyawarah untuk mufakat adalah inti dari sila ke-4 Pancasila.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn-primary-action" id="btnSubmitOrNext" disabled>Pilih Jawaban</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOAST NOTIFICATION -->
+      <div class="toast-notification" id="toastNotification" role="alert" aria-live="polite">
+        <span class="toast-icon">✨</span>
+        <span class="toast-msg" id="toastMsg">Selamat datang di Peta 8 Level!</span>
+      </div>
+
+      <!-- CONFETTI PARTICLES CONTAINER -->
+      <div class="confetti-container" id="confettiContainer" aria-hidden="true"></div>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

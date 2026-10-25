@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Democracy Quest - Kuis Interaktif</title>
+  <meta name="description" content="Democracy Quest - Kuis Pendidikan Pancasila & Demokrasi Kelas XI">
+  <!-- Google Fonts: Outfit, Plus Jakarta Sans, Fredoka, Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+  <div class="viewport-wrapper">
+    <!-- Desktop Preview Controls -->
+    <div class="preview-toolbar" id="previewToolbar">
+      <div class="toolbar-brand">
+        <span class="toolbar-dot"></span>
+        <span class="toolbar-title">Democracy Quest: Halaman Kuis 10 Soal</span>
+      </div>
+      <div class="toolbar-actions">
+        <a href="index.html" class="toolbar-btn" title="Kembali ke Peta Level">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Peta Level</span>
+        </a>
+        <a href="../beranda/index.html" class="toolbar-btn" title="Kembali ke Beranda Utama">
+          <span>Beranda</span>
+        </a>
+        <button class="toolbar-btn" id="toggleFrameBtn" title="Toggle Frame Mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          <span id="frameModeText">Mode Frame</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN APP SCREEN (Halaman Kuis Sesuai Desain Foto 2) -->
+    <main class="app-screen quiz-screen" id="appScreen">
+
+      <!-- 1. TOP APP BAR (Back, Logo & Title, User Profile Pill) -->
+      <header class="quiz-top-bar">
+        <!-- Back Button to Level Map -->
+        <a href="index.html" class="btn-back-circle" id="btnBackToMap" aria-label="Kembali ke Peta Level">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </a>
+
+        <!-- App Logo & Title in Center -->
+        <div class="app-brand-center">
+          <div class="brand-logo-icon">
+            <svg viewBox="0 0 24 24" class="temple-svg" fill="none">
+              <path d="M4 10V19M8 10V19M12 10V19M16 10V19M20 10V19" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M2 19H22M2 21H22" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
+              <polygon points="12 3 2 9 22 9" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="12" cy="7" r="1.5" fill="#facc15"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1 class="brand-title">Democracy Quest</h1>
+            <p class="brand-subtitle">Pahami Hakmu, Tegakkan Keadilan, Bangun Demokrasi!</p>
+          </div>
+        </div>
+
+        <!-- User Profile Pill (Nadia Putri) -->
+        <div class="user-pill-profile" id="userPillProfile">
+          <img src="../assets/avatar_nadia.webp" alt="Avatar Nadia Putri" class="pill-avatar-img">
+          <div class="pill-info">
+            <span class="pill-name">Nadia Putri</span>
+            <span class="pill-role">Pelajar</span>
+          </div>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="pill-chevron">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+      </header>
+
+      <!-- SCROLLABLE QUIZ CONTENT CONTAINER -->
+      <div class="quiz-content-scroll" id="quizContentScroll">
+
+        <!-- 2. HERO LEVEL CARD (Photo 2 Top Banner) -->
+        <section class="hero-level-banner" id="heroLevelBanner">
+          <!-- Background building silhouette & flag -->
+          <div class="banner-parliament-bg" aria-hidden="true">
+            <svg viewBox="0 0 160 100" class="parliament-svg" fill="none">
+              <path d="M10 85H150V60H135V45H125V30H115V45H105V60H10V85Z" fill="rgba(255, 255, 255, 0.15)"/>
+              <line x1="85" y1="30" x2="85" y2="10" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+              <rect x="85" y="10" width="16" height="10" fill="#ef4444"/>
+              <rect x="85" y="15" width="16" height="5" fill="#ffffff"/>
+            </svg>
+          </div>
+
+          <!-- Left: 3D Gold Star Shield Badge -->
+          <div class="banner-badge-graphic">
+            <img src="../assets/hd_elements/badge_level.webp" alt="Badge Prestasi" class="hero-shield-img" id="heroShieldImg">
+          </div>
+
+          <!-- Center: Level Information -->
+          <div class="banner-level-info">
+            <div class="level-tag-pill" id="levelTagPill">Level 1</div>
+            <h2 class="level-main-title" id="levelMainTitle">Penjelajah Demokrasi</h2>
+            <p class="level-focus-text" id="levelFocusText">Pengenalan konsep demokrasi, HAM, dan kebebasan berekspresi</p>
+          </div>
+
+          <!-- Right: Question Step Pill & Progress Track -->
+          <div class="banner-step-box">
+            <div class="step-pill" id="stepPill">Soal 1 dari 10</div>
+            <div class="step-track">
+              <div class="step-progress-bar" id="stepProgressBar" style="width: 10%;"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. MAIN QUESTION CARD (Photo 2 White Card) -->
+        <section class="main-question-card" id="mainQuestionCard">
+          <!-- Question Header Row -->
+          <div class="question-header-row">
+            <div class="question-num-circle" id="questionNumCircle">1</div>
+            <div class="question-badge-pill">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <span>Pilihan Ganda</span>
+            </div>
+          </div>
+
+          <!-- Question Prompt Text -->
+          <h3 class="question-prompt-text" id="questionPromptText">
+            Apa yang ditekankan dalam demokrasi dengan hak asasi manusia?
+          </h3>
+
+          <!-- 4 Options Radio Cards (A, B, C, D) -->
+          <div class="options-radio-list" id="optionsRadioList">
+            <!-- Rendered via JS -->
+          </div>
+
+          <!-- Bottom Action Buttons: Sebelumnya & Selanjutnya -->
+          <div class="question-nav-actions">
+            <button class="btn-quiz-nav btn-prev" id="btnPrevQuestion" type="button" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Sebelumnya</span>
+            </button>
+
+            <button class="btn-quiz-nav btn-next" id="btnNextQuestion" type="button">
+              <span id="nextBtnText">Selanjutnya</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- 4. BOTTOM ILLUSTRATION AREA (Monas, Quote, Cheering Boy) -->
+        <footer class="quiz-footer-graphic">
+          <!-- Monas & City Skyline Silhouette on Left -->
+          <div class="monas-skyline-left" aria-hidden="true">
+            <svg viewBox="0 0 120 70" class="skyline-svg" fill="none">
+              <!-- Monas Obelisk -->
+              <path d="M30 65L30 35L33 30L33 15L32 12L32 10L33 7L34 5L35 3L36 5L37 7L38 10L38 12L37 15L37 30L40 35L40 65Z" fill="#93c5fd" opacity="0.8"/>
+              <ellipse cx="35" cy="4" rx="2" ry="3" fill="#facc15"/>
+              <!-- City Buildings -->
+              <rect x="5" y="45" width="12" height="20" rx="1" fill="#bfdbfe" opacity="0.6"/>
+              <rect x="20" y="40" width="8" height="25" rx="1" fill="#93c5fd" opacity="0.5"/>
+              <rect x="44" y="48" width="15" height="17" rx="1" fill="#bfdbfe" opacity="0.6"/>
+              <rect x="62" y="38" width="14" height="27" rx="1" fill="#93c5fd" opacity="0.5"/>
+            </svg>
+          </div>
+
+          <!-- Handwritten Inspirational Quote in Center -->
+          <div class="footer-quote-wrap">
+            <p class="footer-handwritten-text">
+              Jadi Generasi yang Peduli, Berani, dan Berkontribusi untuk Indonesia!
+            </p>
+            <div class="quote-underline-curve">
+              <svg width="60" height="8" viewBox="0 0 60 8" fill="none">
+                <path d="M2 5C18 1.5 42 1.5 58 5" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Cheering Student Boy on Right (Photo 2) -->
+          <div class="cheering-student-right">
+            <img src="../assets/hd_elements/cheering_student.webp" alt="Pelajar Indonesia Bersemangat" class="cheering-boy-img">
+          </div>
+        </footer>
+
+      </div>
+
+      <!-- RESULTS & BADGE AWARD MODAL -->
+      <div class="quiz-result-backdrop" id="quizResultBackdrop" aria-hidden="true">
+        <div class="quiz-result-card" id="quizResultCard" role="dialog" aria-modal="true">
+          <div class="result-badge-wrap">
+            <img src="../assets/hd_elements/badge_level.webp" alt="Badge Penghargaan" class="result-badge-img">
+            <div class="result-badge-glow"></div>
+          </div>
+
+          <span class="result-status-tag" id="resultStatusTag">LULUS DENGAN PRESTASI!</span>
+          <h2 class="result-title" id="resultTitle">Selamat Nadia Putri!</h2>
+          <p class="result-subtitle" id="resultSubtitle">Kamu berhasil menaklukkan 10 soal Level 1 dengan nilai sempurna!</p>
+
+          <div class="result-score-box">
+            <div class="score-item">
+              <span class="score-label">Skor Akhir</span>
+              <span class="score-value" id="scoreValue">100 / 100</span>
+            </div>
+            <div class="score-divider"></div>
+            <div class="score-item">
+              <span class="score-label">Status Badge</span>
+              <span class="score-badge-status" id="scoreBadgeStatus">Terbuka 🏅</span>
+            </div>
+          </div>
+
+          <div class="result-actions-column">
+            <button class="btn-result-primary" id="btnClaimAndNext">
+              <span>Buka Level Berikutnya di Peta! 🗺️</span>
+            </button>
+            <button class="btn-result-secondary" id="btnRetryQuiz">
+              <span>Ulangi Kuis</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOAST NOTIFICATION -->
+      <div class="toast-notification" id="toastNotification" role="alert" aria-live="polite">
+        <span class="toast-icon">✨</span>
+        <span class="toast-msg" id="toastMsg">Selamat datang di Kuis Demokrasi!</span>
+      </div>
+
+      <!-- CONFETTI PARTICLES -->
+      <div class="confetti-container" id="confettiContainer" aria-hidden="true"></div>
+
+    </main>
+  </div>
+
+  <script src="quiz_bank.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

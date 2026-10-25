@@ -669,66 +669,9 @@ html, body {
 
 /* ==========================================================================
    6. NAVIGASI BAWAH (BOTTOM NAVBAR)
+   Styles loaded from shared component: ../components/navbar.css
    ========================================================================== */
-.bottom-nav-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 74px;
-  background: #ffffff;
-  border-radius: 28px 28px 0 0;
-  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 12px;
-  z-index: 30;
-}
-
-.nav-item {
-  background: transparent;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  color: #64748b;
-  cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 14px;
-  transition: all 0.2s ease;
-  font-family: var(--font-body);
-}
-
-.nav-item:hover {
-  color: #2563eb;
-}
-
-.nav-icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-label {
-  font-size: 11px;
-  font-weight: 600;
-}
-
-/* Active State (Beranda) */
-.nav-item.active {
-  background: #60a5fa;
-  color: #ffffff;
-  border-radius: 18px;
-  padding: 8px 18px;
-  box-shadow: 0 6px 14px rgba(96, 165, 250, 0.4);
-}
-
-.nav-item.active .nav-label {
-  color: #ffffff;
-  font-weight: 700;
-}
+@import url('../components/navbar.css');
 
 /* ==========================================================================
    TOAST & CONFETTI

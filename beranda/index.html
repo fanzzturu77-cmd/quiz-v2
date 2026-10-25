@@ -153,63 +153,8 @@
 
       </div>
 
-      <!-- 6. NAVIGASI BAWAH (BOTTOM NAVBAR) -->
-      <nav class="bottom-nav-bar" aria-label="Navigasi Utama">
-        <!-- 1. Beranda (Active) -->
-        <button class="nav-item active" id="navHome" type="button">
-          <div class="nav-icon-container">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 3L2 12H5V20H9V14H15V20H19V12H22L12 3Z"/>
-            </svg>
-          </div>
-          <span class="nav-label">Beranda</span>
-        </button>
-
-        <!-- 2. Kuis / Peta Level -->
-        <a href="../peta_level/index.html" class="nav-item" id="navQuiz">
-          <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-              <line x1="12" y1="17" x2="12.01" y2="17"></line>
-            </svg>
-          </div>
-          <span class="nav-label">Kuis</span>
-        </a>
-
-        <!-- 3. Main -->
-        <a href="../peta_level/index.html" class="nav-item" id="navPlay">
-          <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-          </div>
-          <span class="nav-label">Main</span>
-        </a>
-
-        <!-- 4. Peringkat -->
-        <button class="nav-item" id="navLeaderboard" type="button">
-          <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <rect x="2" y="12" width="6" height="9" rx="1"></rect>
-              <rect x="9" y="6" width="6" height="15" rx="1"></rect>
-              <rect x="16" y="9" width="6" height="12" rx="1"></rect>
-            </svg>
-          </div>
-          <span class="nav-label">Peringkat</span>
-        </button>
-
-        <!-- 5. Profil -->
-        <button class="nav-item" id="navProfile" type="button">
-          <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </div>
-          <span class="nav-label">Profil</span>
-        </button>
-      </nav>
+      <!-- 6. NAVIGASI BAWAH (Shared Component: Beranda | Peta Level | Misi | Peringkat | Profil) -->
+      <nav class="bottom-nav-bar" id="appNavbar" data-active="beranda" aria-label="Navigasi Utama"></nav>
 
       <!-- Toast Feedback -->
       <div class="toast-notification" id="toastNotification" role="alert" aria-live="polite">
@@ -223,5 +168,6 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="../components/navbar.js"></script>
 </body>
 </html>

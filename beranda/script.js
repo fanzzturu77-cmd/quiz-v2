@@ -140,23 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mainGameCard.addEventListener('click', handlePlayGame);
   }
 
-  // 9. Bottom Navigation Switching
-  navItems.forEach((item) => {
-    if (!item) return;
-    item.addEventListener('click', () => {
-      const label = item.querySelector('.nav-label')?.textContent || 'Menu';
-      if (label === 'Kuis' || label === 'Main') {
-        showToast(`Membuka Peta 8 Level Kuis... 🗺️`, '🚀');
-        setTimeout(() => {
-          window.location.href = '../peta_level/index.html';
-        }, 600);
-        return;
-      }
-      navItems.forEach((btn) => btn && btn.classList.remove('active'));
-      item.classList.add('active');
-      showToast(`Membuka tab ${label}`, '🧭');
-    });
-  });
+  // 9. Bottom Navigation handled by shared ../components/navbar.js component
 
   // 10. Frame Mode Toggle
   if (toggleFrameBtn && appScreen && frameModeText) {

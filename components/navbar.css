@@ -1,0 +1,218 @@
+/* ==========================================================================
+   DEMOCRACY QUEST - REUSABLE UNIFIED BOTTOM NAVBAR COMPONENT
+   Theme: Beranda Sky Blue Palette (#60a5fa, #2563eb, #eff6ff)
+   Items: Beranda, Peta Level, Misi, Peringkat, Profil
+   ========================================================================== */
+
+.bottom-nav-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 74px;
+  background: #ffffff;
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 8px;
+  z-index: 50;
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.nav-item {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 14px;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  text-decoration: none;
+  min-width: 58px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hover State - EXACT MATCH WITH BERANDA */
+.nav-item:hover {
+  color: #2563eb;
+  background: #eff6ff;
+  transform: translateY(-2px);
+}
+
+.nav-item:hover .nav-icon-container svg {
+  transform: scale(1.08);
+  stroke: #2563eb;
+}
+
+.nav-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.nav-icon-container svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease, stroke 0.2s ease;
+}
+
+.nav-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+/* Active State - SKY BLUE MATCHING BERANDA */
+.nav-item.active {
+  background: #60a5fa;
+  color: #ffffff;
+  border-radius: 18px;
+  padding: 8px 14px;
+  box-shadow: 0 6px 14px rgba(96, 165, 250, 0.4);
+  transform: translateY(-2px);
+}
+
+.nav-item.active .nav-icon-container svg {
+  stroke: #ffffff;
+  fill: #ffffff;
+}
+
+.nav-item.active .nav-label {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.nav-item.active:hover {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+/* Modal Popup for Misi, Peringkat, Profil */
+.nav-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 120;
+  animation: navFadeIn 0.25s ease;
+}
+
+.nav-modal-backdrop.active {
+  display: flex;
+}
+
+.nav-modal-card {
+  width: 100%;
+  max-width: 340px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 22px 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  animation: navCardPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1.5px solid #e2e8f0;
+}
+
+.nav-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.nav-modal-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.nav-modal-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+  background: #eff6ff;
+  border: 2px solid #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.15);
+}
+
+.nav-modal-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.nav-modal-desc {
+  font-size: 12.5px;
+  color: #64748b;
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.nav-modal-action-btn {
+  width: 100%;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  transition: all 0.2s ease;
+}
+
+.nav-modal-action-btn:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+}
+
+@keyframes navFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes navCardPop {
+  from { transform: scale(0.9) translateY(10px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}

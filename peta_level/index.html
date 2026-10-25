@@ -106,16 +106,16 @@
           <defs>
             <linearGradient id="pathGradient" x1="0%" y1="100%" x2="0%" y2="0%">
               <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-              <stop offset="30%" stop-color="#ede9fe" stop-opacity="0.95"/>
-              <stop offset="70%" stop-color="#ddd6fe" stop-opacity="0.95"/>
-              <stop offset="100%" stop-color="#c4b5fd" stop-opacity="0.95"/>
+              <stop offset="30%" stop-color="#dbeafe" stop-opacity="0.95"/>
+              <stop offset="70%" stop-color="#bfdbfe" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="#93c5fd" stop-opacity="0.95"/>
             </linearGradient>
             <filter id="pathGlow" x="-25%" y="-25%" width="150%" height="150%">
-              <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#7c3aed" flood-opacity="0.4"/>
+              <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#2563eb" flood-opacity="0.4"/>
             </filter>
           </defs>
           <path id="questPathLine" class="quest-path-line" d="" fill="none" stroke="url(#pathGradient)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" filter="url(#pathGlow)"/>
-          <path id="questPathDashes" class="quest-path-dashes" d="" fill="none" stroke="#6366f1" stroke-width="3" stroke-dasharray="6,8" stroke-linecap="round"/>
+          <path id="questPathDashes" class="quest-path-dashes" d="" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="6,8" stroke-linecap="round"/>
         </svg>
 
         <!-- DYNAMIC ADVENTURER WALKER CHARACTER (WALKS FOLLOWING LEVEL) -->
@@ -300,57 +300,8 @@
 
       </div>
 
-      <!-- BOTTOM NAVIGATION BAR -->
-      <nav class="bottom-nav-bar" aria-label="Navigasi Utama">
-        <a href="../beranda/index.html" class="nav-item" id="navHome">
-          <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="M12 3L2 12H5V20H9V14H15V20H19V12H22L12 3Z"/>
-            </svg>
-          </div>
-          <span class="nav-label">Beranda</span>
-        </a>
-
-        <button class="nav-item active" id="navMap" type="button">
-          <div class="nav-icon-container">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
-            </svg>
-          </div>
-          <span class="nav-label">Peta Level</span>
-        </button>
-
-        <button class="nav-item" id="navMission" type="button">
-          <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <circle cx="12" cy="8" r="7"></circle>
-              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-            </svg>
-          </div>
-          <span class="nav-label">Misi</span>
-        </button>
-
-        <button class="nav-item" id="navLeaderboard" type="button">
-          <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <rect x="2" y="12" width="6" height="9" rx="1"></rect>
-              <rect x="9" y="6" width="6" height="15" rx="1"></rect>
-              <rect x="16" y="9" width="6" height="12" rx="1"></rect>
-            </svg>
-          </div>
-          <span class="nav-label">Peringkat</span>
-        </button>
-
-        <button class="nav-item" id="navProfile" type="button">
-          <div class="nav-icon-container">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </div>
-          <span class="nav-label">Profil</span>
-        </button>
-      </nav>
+      <!-- BOTTOM NAVIGATION BAR (Shared Component: Beranda | Peta Level | Misi | Peringkat | Profil) -->
+      <nav class="bottom-nav-bar" id="appNavbar" data-active="peta_level" aria-label="Navigasi Utama"></nav>
 
       <!-- INTERACTIVE QUIZ MODAL -->
       <div class="quiz-modal-backdrop" id="quizModalBackdrop" aria-hidden="true">
@@ -402,5 +353,6 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="../components/navbar.js"></script>
 </body>
 </html>
